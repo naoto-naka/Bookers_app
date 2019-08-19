@@ -1,0 +1,25 @@
+<main>
+	<h1>Books</h1>
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Opinion</th>
+		</tr>
+	</table>
+</main>
+<div class="sidebar">
+	<h2>User info</h2>
+	<%= attachment_image_tag @user, :profile_image, fill, 100, 100 %>
+	<p>name</p>
+	<%= @user.name %>
+	<p>introduction</p>
+	<%= @user.introduction %><br>
+	<%= link_to "レンチ",edit_user_path %>
+	<%= form_for(@user) do |f| %>
+	<h2>New book</h2>
+	<p>Title</p>
+	<%= f.text_field : %>
+	<p>Opinion</p>
+	<%= f.text_area : %>
+	<% end %>
+</div>

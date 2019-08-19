@@ -11,7 +11,41 @@
 
   <body>
     <header>
-      
+      <div class="headermenu">
+  <ul class="nav navbar-nav navbar-right" >
+    <% if user_signed_in? %>
+      <li class="">
+        <%= link_to "logout", destroy_user_session_path, method: :delete %>
+      </li>
+      <li class="">
+        <%= link_to 'Books', new_book_path %>
+      </li>
+      <li class="">
+        <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
+        <%= link_to 'Users', "#" %>
+      </li>
+         <li class="">
+        <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
+        <%= link_to 'Home', user_path(current_user.id) %>
+        </li>
+    <% else %>
+     <li class="">
+        <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
+        <%= link_to 'Home', "#" %>
+        </li>
+         <li class="">
+        <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
+        <%= link_to 'About', "#" %>
+        </li>
+      <li class="">
+        <%= link_to "sign up", new_user_registration_path %>
+      </li>
+      <li class="">
+        <%= link_to "login", new_user_session_path %>
+      </li>
+    <% end %>
+  </ul>
+</div>
     </header>
     <%= yield %>
   </body>
