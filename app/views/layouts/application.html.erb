@@ -10,43 +10,65 @@
   </head>
 
   <body>
-    <header>
-      <div class="headermenu">
-  <ul class="nav navbar-nav navbar-right" >
-    <% if user_signed_in? %>
-      <li class="">
-        <%= link_to "logout", destroy_user_session_path, method: :delete %>
-      </li>
-      <li class="">
-        <%= link_to 'Books', new_book_path %>
-      </li>
-      <li class="">
-        <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
-        <%= link_to 'Users', "#" %>
-      </li>
-         <li class="">
-        <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
-        <%= link_to 'Home', user_path(current_user.id) %>
+   <header>
+  <nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+
+      <div class="navbar-header site-title">
+          Bookers
+      </div>
+
+      <ul class="nav navbar-nav navbar-right" >
+      <% if user_signed_in? %>
+        <li class="button">
+            <span class="glyphicon glyphicon-home" aria-hidden="true">
+          <%= link_to 'Home', user_path(current_user.id),style: "color:gray;" %></span>
         </li>
-    <% else %>
-     <li class="">
-        <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
-        <%= link_to 'Home', "#" %>
+        <li class="button">
+          　<span class="glyphicon glyphicon-user" aria-hidden="true">
+          <%= link_to 'Users', users_path,style: "color:gray" %></span>
         </li>
-         <li class="">
-        <!-- ↓以下のコードは、5章で正しいroutingに書き直します。 -->
-        <%= link_to 'About', "#" %>
+        <li class="button">
+          　<span class="glyphicon glyphicon-book" aria-hidden="true">
+          <%= link_to 'Books', books_path, style: "color:gray" %></span>
         </li>
-      <li class="">
-        <%= link_to "sign up", new_user_registration_path %>
+        <li class="text-muted">
+          　<span class="glyphicon glyphicon-log-out" aria-hidden="true">
+          <%= link_to "logout", destroy_user_session_path, method: :delete, style: "color:gray" %></span>
+        </li>
+        <% else %>
+        <li class="button">
+          <span class="glyphicon glyphicon-home" aria-hidden="true">
+          <%= link_to 'home', root_path, style: "color:gray;" %></span>
+        </li>
+        <li class="button">
+          <span class="glyphicon glyphicon-link" aria-hidden="true">
+          <%= link_to 'about', home_about_path, style: "color:gray;" %></span>
+        </li>
+      <li class="button">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true">
+        <%= link_to "sign up", new_user_registration_path, style: "color:gray;" %></span>
       </li>
-      <li class="">
-        <%= link_to "login", new_user_session_path %>
+      <li class="button">
+        <span class="glyphicon glyphicon-log-in" aria-hidden="true">
+        <%= link_to "login", new_user_session_path, style: "color:gray;" %></span>
       </li>
-    <% end %>
-  </ul>
+      <% end %>
+      </ul>
+  </div>
+</nav>
+
 </div>
     </header>
+
+<div class="container">
+  <div class="row">
+      <% if flash[:notice] %>
+        <%= flash[:notice] %>
+      <% end %>
     <%= yield %>
+  </div>
+</div>
+<p class="col-md-offset-9 col-md-3">CopyRight Infratop.inc</p>
   </body>
 </html>
